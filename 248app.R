@@ -18,16 +18,27 @@ all_players <- sort(unique(data.all$PlayerID))
 
 # UI
 ui <- fluidPage(
-  
   titlePanel("248 Data Visualization"),
   mainPanel(
-    
     selectInput(inputId = "groupID",
                 label = "Group ID:", 
                 choices = c("all", all_groups),
                 multiple = TRUE,
                 selectize = TRUE,
                 selected = "all"),
+    
+    selectInput(inputId = "xvar",
+                label = "X-Variable:", 
+                choices = c("NumofSuccess"),
+                multiple = FALSE,
+                selectize = TRUE,
+                selected = "NumofSuccess"),
+    
+    selectInput(inputId = "yvar",
+                label = "Y-Variable:", 
+                choices = c("Count"),
+                multiple = FALSE,
+                selected = "Count"),
     
     downloadButton('downloadData', label = "Download Data")
   )
