@@ -1,0 +1,20 @@
+library(ggplot2)
+library(dplyr)
+
+data246 <- read.csv("/Users/admin/Downloads/246 sample data - Sheet1 (1).csv")
+
+data246 <- data246 %>%
+  group_by(PlayerID) %>%
+  mutate(SuccessRate = sum(Result == TRUE) / n()) %>%
+  mutate(NumofSuccess = sum(Result == TRUE)) %>%
+  mutate(NumofGuesses = n())
+data246 <- na.omit(data246)
+
+ggplot(data = data246, aes(x = NumofSuccess, fill = guessCorrect)) + 
+  geom_bar(position = "stack")
+
+ggplot(data = data246, aes(x = NumofGuesses, fill = guessCorrect)) + 
+  geom_bar(position = "stack")
+
+ggplot(data = data246, aes(x = SuccessRate, fill = guessCorrect)) + 
+  geom_bar(position = "stack")
